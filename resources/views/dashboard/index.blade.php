@@ -1,4 +1,22 @@
 <x-layout>
+    <section class="flex flex-col md:flex-row gap-4">
+    {{--    Profile Info Form--}}
+
+        <div class="bg-white p-8 rounded-lg shadow-md w-full">
+            <h3 class="text-3xl text-center font-bold mb-4">
+                Profile Info
+            </h3>
+
+            <form method="POST" action="{{route("profile.update")}}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <x-inputs.text id="name" name="name" label="Name" value="{{$user->name}}" />
+                <x-inputs.text id="email" name="email" label="Email address" type="email" value="{{$user->email}}" />
+
+                <button type="submit" class="w-full bg-green-500 text-white px-4 py-2 border rounded focs:outline-none">Save</button>
+            </form>
+        </div>
+    {{--    Job Listing--}}
     <div class="bg-white p-8 rounded-lg shadow-md w-full">
         <h3 class="text-3xl text-center font-bold mb-4">
             My Job Listings
@@ -29,4 +47,6 @@
 
         @endforelse
     </div>
+    </section>
+    <x-bottom-banner />
 </x-layout>
